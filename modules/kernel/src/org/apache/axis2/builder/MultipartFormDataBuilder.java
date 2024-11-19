@@ -20,12 +20,13 @@
 package org.apache.axis2.builder;
 
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.apache.axiom.om.OMAbstractFactory;
 import org.apache.axiom.om.OMElement;
@@ -34,12 +35,12 @@ import org.apache.axis2.Constants;
 import org.apache.axis2.context.MessageContext;
 import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.axis2.util.MultipleEntryHashMap;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.fileupload.servlet.ServletRequestContext;
+import org.apache.commons.fileupload2.core.FileItemFactory;
+import org.apache.commons.fileupload2.core.FileUploadException;
+import org.apache.commons.fileupload2.core.DiskFileItem;
+import org.apache.commons.fileupload2.core.DiskFileItemFactory;
+import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletFileUpload;
+import org.apache.commons.fileupload2.jakarta.servlet6.JakartaServletRequestContext;
 
 public class MultipartFormDataBuilder implements Builder {
 
@@ -82,7 +83,7 @@ public class MultipartFormDataBuilder implements Builder {
 
         MultipleEntryHashMap parameterMap = new MultipleEntryHashMap();
 
-        List items = parseRequest(new ServletRequestContext(request));
+        List items = parseRequest(new JakartaServletRequestContext(request));
         Iterator iter = items.iterator();
         while (iter.hasNext()) {
             DiskFileItem diskFileItem = (DiskFileItem)iter.next();
@@ -105,12 +106,14 @@ public class MultipartFormDataBuilder implements Builder {
         return parameterMap;
     }
 
-    private static List parseRequest(ServletRequestContext requestContext)
+    private static List parseRequest(JakartaServletRequestContext requestContext)
             throws FileUploadException {
         // Create a factory for disk-based file items
-        FileItemFactory factory = new DiskFileItemFactory();
+//        FileItemFactory factory = new DiskFileItemFactory();
+        DiskFileItemFactory factory = DiskFileItemFactory.builder().get();
+
         // Create a new file upload handler
-        ServletFileUpload upload = new ServletFileUpload(factory);
+        JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
         // Parse the request
         return upload.parseRequest(requestContext);
     }
@@ -118,8 +121,12 @@ public class MultipartFormDataBuilder implements Builder {
     private String getTextParameter(DiskFileItem diskFileItem,
                                     String characterEncoding) throws Exception {
 
-        String encoding = diskFileItem.getCharSet();
+        Charset charset = diskFileItem.getCharset();
+        String encoding = null;
 
+        if(charset != null) {
+            encoding = charset.name();
+        }
         if (encoding == null) {
             encoding = characterEncoding;
         }

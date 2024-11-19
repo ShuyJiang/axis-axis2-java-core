@@ -81,7 +81,7 @@
         <module>modules/xmlbeans-codegen</module>
         <module>modules/scripting</module>
         <module>modules/jaxbri-codegen</module>
-        <module>modules/metadata</module>
+<!--        <module>modules/metadata</module>-->
         <module>modules/saaj</module>
         <module>modules/jaxws</module>
         <module>modules/jaxws-mar</module>
@@ -96,7 +96,7 @@
         <module>modules/transport/jms</module>
         <module>modules/transport/mail</module>
         <module>modules/transport/tcp</module>
-        <module>modules/transport/testkit</module>
+<!--        <module>modules/transport/testkit</module>-->
         <module>modules/transport/udp</module>
         <module>modules/transport/xmpp</module>
         <module>modules/distribution</module>
@@ -500,7 +500,7 @@
         <antlr.version>2.7.7</antlr.version>
         <aspectj.version>1.9.7</aspectj.version>
         <bsf.version>2.4.0</bsf.version>
-        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <commons.fileupload2.version>2.0.0-M2</commons.fileupload2.version>
         <commons.logging.version>1.2</commons.logging.version>
         <fi.version>2.0.0</fi.version>
         <geronimo.spec.annotation.version>1.1.1</geronimo.spec.annotation.version>
@@ -668,9 +668,9 @@
                 <version>${spring.version}</version>
             </dependency>
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.1.0</version>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>5.0.0</version>
             </dependency>
             <dependency>
                 <groupId>com.google.code.gson</groupId>
@@ -828,7 +828,7 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.11.0</version>
+                <version>2.15.0</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
@@ -856,9 +856,14 @@
                 <version>${httpmime.version}</version>
             </dependency>
             <dependency>
-                <groupId>commons-fileupload</groupId>
-                <artifactId>commons-fileupload</artifactId>
-                <version>${commons.fileupload.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-fileupload2-core</artifactId>
+                <version>${commons.fileupload2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
+                <version>2.0.0-M2</version>
             </dependency>
             <dependency>
                 <groupId>wsdl4j</groupId>

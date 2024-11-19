@@ -33,8 +33,8 @@ import java.util.Random;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletException;
 
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
@@ -211,7 +211,7 @@ public class JettyServer extends AbstractAxis2Server {
             server.start();
         }
         catch (SecurityException e) {
-            if (e.getMessage().equals("class \"javax.servlet.ServletRequestListener\"'s signer information does not match signer information of other classes in the same package")) {
+            if (e.getMessage().equals("class \"jakarta.servlet.ServletRequestListener\"'s signer information does not match signer information of other classes in the same package")) {
                 log.error(
                  "It is likely your test classpath contains multiple different versions of servlet api.\n" +
                  "If you are running this test in an IDE, please configure it to exclude Rampart's core module servlet api dependency.");

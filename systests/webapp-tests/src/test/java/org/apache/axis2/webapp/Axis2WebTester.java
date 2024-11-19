@@ -21,7 +21,7 @@ package org.apache.axis2.webapp;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
+import jakarta.servlet.http.Cookie;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;

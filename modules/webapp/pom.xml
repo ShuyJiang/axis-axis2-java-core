@@ -117,9 +117,10 @@
             <type>aar</type>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
+            <version>5.0.0</version>
         </dependency>
         <dependency>
             <!-- Not required for the Maven build, but necessary to avoid errors when

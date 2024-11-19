@@ -84,8 +84,8 @@
                             javax.xml.namespace,
                             !org.apache.axis2.*,
                             javax.ws.rs; resolution:=optional,
-                            javax.servlet; version=2.4.0,
-                            javax.servlet.http; version=2.4.0,
+                            jakarta.servlet; version=2.4.0,
+                            jakarta.servlet.http; version=2.4.0,
                             javax.transaction; resolution:=optional,
                             org.apache.commons.io,
                             org.osgi.framework; version=1.3.0,
@@ -146,9 +146,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
+            <version>5.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.axis2</groupId>
